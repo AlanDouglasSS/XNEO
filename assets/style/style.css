@@ -1,0 +1,141 @@
+      body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+}
+
+.header {
+  margin: 0;
+  height: 105px;
+  background-color: #433B3B;
+  padding: 20px;
+  text-align: center;
+}
+
+.header span {
+  color: #19F6C1;
+}
+
+.content {
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+.content .user-info {
+  height: 846px;
+  width: 382px;
+  background-color: #E84E4F;
+}
+
+.content .task-blocks {
+  width: 100%;
+  background-color: #8B8685;
+}
+
+.footer {
+  background-color: #433B3B;
+  text-align: center;
+  padding: 10px;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+}
+
+#userTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#userTable th,
+#userTable td {
+  padding: 8px;
+  border: 1px solid #ddd;
+}
+
+#userTable th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.action-button {
+  padding: 5px 10px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.user-info {
+  text-align: center;
+}
+
+.user-info #adicionarBtn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+/* Estilos para telas menores que 768px (tablets e smartphones em modo retrato) */
+@media only screen and (max-width: 767px) {
+  .content {
+    flex-direction: column;
+    margin-bottom: 60px; /* Adiciona margem inferior para acomodar o rodapé */
+  }
+
+  .content .user-info {
+    width: 100%;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
+  .content .task-blocks {
+    width: 100%;
+  }
+
+  #userTable {
+    font-size: 14px;
+  }
+
+  .footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    margin: 0;
+  }
+}
+
+@media only screen and (max-width: 575px) {
+  .header {
+    padding: 10px;
+  }
+
+  .header span {
+    display: block;
+    margin-top: 10px;
+  }
+
+  .content .user-info {
+    padding: 20px;
+    order: 2; /* Altera a ordem para que user-info apareça após task-blocks */
+  }
+
+  .content .task-blocks {
+    padding: 20px;
+    order: 1; /* Altera a ordem para que task-blocks apareça antes de user-info */
+  }
+
+  #userTable {
+    font-size: 12px;
+  }
+}

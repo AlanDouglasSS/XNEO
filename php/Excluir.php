@@ -7,10 +7,10 @@ if(isset($_GET['id']) && empty($_GET['id']) == false){
     $sql = "DELETE FROM atividade WHERE ID_atividade= '$id'";
     $pdo->query($sql);
 
-    header("Location = index.php");
+    header("Location: ../index.html");
 
 }else{
-    header("Location = index.php");
+    header("Location: ../index.html");
 }
 
 
