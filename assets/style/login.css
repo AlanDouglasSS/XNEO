@@ -1,0 +1,45 @@
+#loginForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 50px;
+}
+
+#loginForm label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #555;
+}
+
+#loginForm input[type="email"],
+#loginForm input[type="password"] {
+    width: 300px;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 2px solid #ddd;
+    font-size: 16px;
+    transition: border-color 0.3s ease-in-out;
+}
+
+#loginForm input[type="email"]:focus,
+#loginForm input[type="password"]:focus {
+    border-color: #4CAF50;
+}
+
+#loginForm button[type="submit"] {
+    width: 200px;
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #4CAF50;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+#loginForm button[type="submit"]:hover {
+    background-color: #3e8e41;
+}

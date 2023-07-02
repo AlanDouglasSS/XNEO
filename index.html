@@ -1,138 +1,91 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-    <meta charset="pt-br">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Teste</title>
-
-    <script src="assets/javascript/jquery-3.7.0.min.js"></script>
+    <title>Document</title>
 
     <link rel="stylesheet" href="assets/style/style.css">
-
 </head>
-<body>
-    <div class="header">
-        <h1>Task<span>&</span>XNEO</h1>
-        <input type="text" id="search" placeholder="Buscar tarefas">
-        <button>Sair</button>
-    </div>
-    <div class="content">
 
-        <!--===QUADRANTE ESQUERDO-->
-        <div class="user-info">
-            <!-- Informações do usuário aqui -->
+<script src="assets/javascript/jquery-3.7.0.min.js"></script>
 
-
-            <!--===SCRIPT PARA O BOTÃO ADICIONAR===-->
-            <button id="adicionarBtn">Adicionar</button>
-
-            
-
-
-            <script>
-                $(document).ready(function() {                    
-                    let adicionarBtn = $('#adicionarBtn');
-
-                    // Função para adicionar um novo registro ao clicar no botão "Adicionar"
-                    adicionarBtn.on('click', function() {
-                        // Redirecionar para a página "adicionar.php"
-                        window.location.href = 'php/Adicionar.php';
-                    });
-                });
-            </script>
-        </div>
-
-        <!--===QUADRANTE DIREITO-->
-        <div class="task-blocks">
-            <!-- Blocos de tarefas aqui -->
-
-            <table id="userTable">
-                <thead>
-                    <tr>
-                        <th>Nome</th>
-                        <th>Descrição</th>
-                        <th>Data Início</th>
-                        <th>Data Final</th>
-                        <th>Ações</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- As linhas da tabela serão preenchidas aqui pelo JavaScript -->
-                </tbody>
-            </table>
-            
-            <script>
-                $(document).ready(function() {
-                    let userTable = $('#userTable');
-                    let tableBody = userTable.find('tbody');
-
-                    function atualizarTabela(){
-
-                        tableBody.empty();
-
-                        $.ajax({
-                            url: 'php/config.php',
-                            type: 'GET',
-                            dataType: 'json',
-                            success: function(users) {
-                            if (users.length > 0) {
-                                $.each(users, function(index, user) {
-                                    let row = $('<tr></tr>');
-
-                                    let nome = $('<td></td>').text(user.nome);
-                                    row.append(nome);
-
-                                    let descricao = $('<td></td>').text(user.descricao);
-                                    row.append(descricao);
-
-                                    let dataInicio = $('<td></td>').text(user.data_inicio);
-                                    row.append(dataInicio);
-
-                                    let dataFinal = $('<td></td>').text(user.data_final);
-                                    row.append(dataFinal);
-
-                                    let actions = $('<td></td>');
-
-                                    /*==BOTÃO EDITAR*/
-                                    let editarButton = $('<button></button>').attr('type', 'button').addClass('action-button').text('Editar');
-                                    editarButton.click(function(){
-                                        window.location.href = 'php/editar.php?id=' + user.ID_atividade;
-                                    });
-
-                                    /*==BOTÃO EXCLUIR*/
-                                    let excluirButton = $('<button></button>').attr('type', 'button').addClass('action-button').text('Excluir');
-                                    excluirButton.click(function(){
-                                        window.location.href = 'php/Excluir.php?id=' + user.ID_atividade;
-                                    });
-
-                                    actions.append(editarButton, excluirButton);
-                                    row.append(actions);
-
-                                userTable.append(row);
-                                });
-                            } else {
-                                console.log("Erro!");
-                            }
-                            },
-                            error: function() {
-                            console.log("Erro na requisição AJAX.");
-                            }
-                        });
-                    }
-
-                    atualizarTabela();
-                });
-
-                
-            </script>
-        </div>
-    </div>
-    <div class="footer">
-        <p>© 2023 Task&XNEO. Todos os direitos reservados.</p>
-    </div>
-
+<style>
     
+
+
+</style>
+<body>
+
+    <section id="corpo">
+
+        <header id="cabecalho">
+
+            <!--=====LOGIN E CADASTRO=====-->
+
+            <div class="topo">
+                <p>Comece aqui:</p>
+                <ul class="lista">
+                    <li id="login">Login</li>
+                    <li id="cadastro">Cadastrar</li>
+                </ul>
+            </div>
+
+            <!--=======JQUERY (REQUISIÇÃO - LOGIN E CADASTRO)======-->
+            <script>
+
+
+                $(document).ready(function (){
+                    let addCadastro = $('#cadastro');
+                    let addLogin = $('#login');
+
+                    addCadastro.on('click', function(){
+                        window.location.href = ('php/cadastrar_users.php');
+                    });
+
+                    addLogin.on('click', function(){
+                        window.location.href = ('login.html');
+                    })
+
+                });
+
+
+            </script>
+
+
+            <!--========LOGO=======-->
+
+            <div id="logo_titulo">
+                <img 
+                id="logo" 
+                src="assets/img/logo.png"            
+                >
+                <h1>Task&XNEO</h1>
+            </div>
+            
+        </header>
+
+
+
+        <section id="centro">
+            
+
+            <div class="container">       
+                <p class="text">Aqui você pode <br>gerenciar <br>seus compromissos <br>com precisão!</p>
+                <div class="elemento"></div>
+            </div>
+
+            <div>
+                <div id="quad_opacity"></div>
+
+                <img id="ze" src="assets/img/ze.png" alt="">
+            </div>
+
+        </section>
+
+        <footer id="rodape"></footer>
+
+    </section>
     
 </body>
 </html>
