@@ -27,16 +27,73 @@ try {
 }
 ?>
 
-<form action="" method="POST">
-    Nome:<br/>
-    <input type="text" name="nome"/><br/>
-    E-mail:<br/>
-    <input type="text" name="email"/><br/>
-    Senha:<br/>
-    <input type="password" name="senha"/><br/>
-        
-    <input type="submit" value="Cadastrar">
-</form>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        form {
+            max-width: 400px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 75px;            
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        form label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        form input[type="text"],
+        form input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        form input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+        }
+
+        form input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <form action="" method="POST">
+        Nome:<br/>
+        <input type="text" name="nome"/><br/>
+        E-mail:<br/>
+        <input type="text" name="email"/><br/>
+        Senha:<br/>
+        <input type="password" name="senha"/><br/>
+            
+        <input type="submit" value="Cadastrar">
+    </form>
+    
+</body>
+
 
 <!--============================DOCUMENTAÇÃO===========================
 

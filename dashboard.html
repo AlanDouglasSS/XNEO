@@ -5,22 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="assets/javascript/jquery-3.7.0.min.js"></script>
-
-
-
+    
     <style>
-        .editar-button {
-            background-color: blue;
-            color: white;
-            padding: 5px 10px;
-            text-decoration: none;
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
         }
 
-        .excluir-button {
-            background-color: red;
-            color: white;
+        h1 {
+            font-size: 36px;
+            color: #333;
+            text-align: center;
+            padding: 20px;
+            background-color: #fff;
+            margin: 0;
+        }
+
+        button#adicionarBtn {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        button#adicionarBtn:hover {
+            background-color: #0056b3;
+        }
+
+        table {
+            width: 100%;
+            background-color: #fff;
+            border-collapse: collapse;
+            margin: 20px auto;
+        }
+
+        table th, table td {
+            padding: 10px;
+            text-align: left;
+        }
+
+        table th {
+            background-color: #333;
+            color: #fff;
+        }
+
+        table td {
+            border-bottom: 1px solid #ccc;
+        }
+
+        .editar-button, .excluir-button {
+            display: inline-block;
             padding: 5px 10px;
+            margin-right: 5px;
             text-decoration: none;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .editar-button:hover, .excluir-button:hover {
+            background-color: #0056b3;
         }
     </style>
 
@@ -45,7 +97,8 @@
     </script>
 
 
-    <table id="userTable">
+    <!--===CABEÇALHO INDEPENDENTE-->
+    <table id="">
         <thead>
             <tr>
                 <th>Nome</th>
@@ -54,21 +107,28 @@
                 <th>Data Final</th>
                 <th>Ações</th>
             </tr>
-        </thead>
-        <tbody>
-        </tbody>
+        </thead> 
     </table>
 
+    <!--CABEÇALHO DEPENDENTE SUBISTITUIÇÃO-->
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>o</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead> 
+    </table>
     
+       
     <script>
         $(document).ready(function() {
             const urlParams = new URLSearchParams(window.location.search);
             const usuarioId = urlParams.get('usuarioId');
             const userTable = $('#userTable');
-
-            // Manipulador de evento para o envio do formulário de adição de usuário
-           
-
             // Carrega os dados da tabela
             loadData();
 
@@ -96,15 +156,12 @@
                                 let dataFinal = $('<td></td>').text(user.data_final);
                                 row.append(dataFinal);
 
-                                
+                                let actions = $('<td></td>');
 
-                                let actions = $('<td></td>');    
-                                
-                                
-                                let editarButton = $('<a></a>') // Cria um novo elemento de link
-                                    .text('Editar') // Define o texto do link
-                                    .attr('href', 'php/editar.php?id=' + user.ID_atividade) // Define o atributo href do link
-                                    .addClass('editar-button'); // Adiciona uma classe ao link para estilização
+                                let editarButton = $('<a></a>')
+                                    .text('Editar')
+                                    .attr('href', 'php/editar.php?id=' + user.ID_atividade)
+                                    .addClass('editar-button');
 
                                 let excluirButton = $('<a></a>')
                                     .text('Excluir')
@@ -113,15 +170,7 @@
 
                                 actions.append(editarButton);
                                 actions.append(excluirButton);
-                                row.append(actions);
-
-
-
-                                
-                                row.append(actions);
-
-                                                 
-                                // Adiciona a linha à tabela
+                                row.append(actions);// Adiciona a linha à tabela
                                 userTable.append(row);
                             });
                         } else {
@@ -136,5 +185,7 @@
             }
         });
     </script>
+    
 </body>
+
 </html>
