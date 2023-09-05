@@ -8,7 +8,7 @@ if(isset($_GET['id']) && empty($_GET['id']) == false){
 }
 
 
-//FERIFICA QUE O USUÁRIO ENVIOU AS INFORMAÇÕES, SE NÃO ENVIOU, 
+//VERIFICA QUE O USUÁRIO ENVIOU AS INFORMAÇÕES, SE NÃO ENVIOU, 
 //ELE PASSA PARA O PRÓXIMO COMANDO!
 if(isset($_POST['nome']) && empty($_POST['nome']) == false){
     $nome = addslashes($_POST['nome']);
@@ -19,7 +19,7 @@ if(isset($_POST['nome']) && empty($_POST['nome']) == false){
     $sql = "UPDATE atividade SET nome='$nome', descricao= '$descricao', data_inicio='$inicio', data_final='$prazo' WHERE ID_atividade= '$id' ";
     $sql = $pdo->query($sql);
 
-    header("Location: ../index.html");
+    header("Location: ../dashboard.html");
 }
 
 
@@ -32,74 +32,37 @@ if($sql->rowCount() > 0){
     //VARIÁVEL DECLARADA!
     $dado = $sql->fetch(); //CAPTURANDO APENAS UM ÚNICO USUÁRIO
 }else{
-    header("Location: ../index.html");//CAPTURANDO O LOCAL DO INDEX.PHP SE FOR O CASO!
+    header("Location: ../dashboard.html");//CAPTURANDO O LOCAL DO INDEX.PHP SE FOR O CASO!
 }  
     
 
 
 ?>
 
-<!--FORMULÁRIO DO ARQUIVO EDITAR, ATUALIZAR DADOS-->
-<html>
 <head>
-    <title>Editar Tarefa</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f2f2f2;
-            margin: 0;
-            padding: 20px;
-        }
-
-        h1 {
-            text-align: center;
-            color: #333;
-        }
-
-        form {
-            max-width: 400px;
-            margin: 0 auto;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        input[type="text"],
-        input[type="date"],
-        input[type="submit"] {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 10px;
-            border: 1px solid #ccc;
-            border-radius: 3px;
-        }
-
-        input[type="submit"] {
-            background-color: #333;
-            color: #fff;
-            cursor: pointer;
-        }
-
-        input[type="submit"]:hover {
-            background-color: #555;
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/style/editar.css">
 </head>
-<body>
-    <h1>Editar Tarefa</h1>
 
+<body>
+        <!--FORMULÁRIO DO ARQUIVO EDITAR, ATUALIZAR DADOS-->
     <form action="" method="POST">
-        <label for="nome">Nome:</label><br/>  
-        <input type="text" name="nome" value="<?php echo $dado['nome']; ?>"/><br/>
-        <label for="descricao">Descrição:</label><br/>
-        <input type="text" name="descricao" value="<?php echo $dado['descricao']; ?>"/><br/>    
-        <label for="inicio">Início:</label><br/>
-        <input type="date" name="inicio" value="<?php echo $dado['data_inicio']; ?>"><br/>
-        <label for="prazo">Prazo:</label><br/>
-        <input type="date" name="prazo" value="<?php echo $dado['data_final']; ?>"><br/>
-    
-        <input type="submit" value="Atualizar">
+
+    <!--CAPTURANDO A VARIÁVEL DECLARADA A CIMA COM PHP, NA TAG INPUT.
+    E REQUISITANDO DOS DADOS NO BANCO-->
+    Nome:<br/>  
+    <input type="text" name="nome" value="<?php echo $dado['nome']; ?>"/><br/>
+    Descrição:<br/>
+    <input type="text" name="descricao" value="<?php echo $dado['descricao']; ?>"/><br/>    
+    Início:<br/>
+    <input type="date" name="inicio" value="<?php echo $dado['data_inicio']; ?>"><br/>
+    Prazo:<br/>
+    <input type="date" name="prazo" value="<?php echo $dado['data_final']; ?>"><br/>
+
+    <!--SO V-->
+
+    <input type="submit" value="Atualizar">
+
     </form>
+        
 </body>
-</html>
+

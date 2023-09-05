@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="assets/javascript/jquery-3.7.0.min.js"></script>
+    <link rel="stylesheet" href="./assets/style/dashboard.css">
+    
+    
+</head>
+<body>
+    <h1>Dashboard</h1>
+    
+        
+    <button id="adicionarBtn">Adicionar</button>
+
+    <!--======BOTÃO ADICIONAR!======-->
+    <script>
+        $(document).ready(function() {                    
+            let adicionarBtn = $('#adicionarBtn');
+
+                // Função para adicionar um novo registro ao clicar no botão "Adicionar"
+            adicionarBtn.on('click', function() {
+                // Redirecionar para a página "adicionar.php"
+                window.location.href = 'php/adicionar.php';
+            });
+        });
+    </script>
+
+
+    <!--===CABEÇALHO INDEPENDENTE-->
+    <table id="">
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Descrição</th>
+                <th>Data de Início</th>
+                <th>Data Final</th>
+                <th>Ações</th>
+            </tr>
+        </thead> 
+    </table>
+
+    <!--CABEÇALHO DEPENDENTE SUBISTITUIÇÃO-->
+    <table id="userTable">
+        <thead>
+            <tr>
+                <th></th>
+                <th></th>
+                <th>o</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead> 
+    </table>
+    
+       
+    <script>
+        $(document).ready(function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const usuarioId = urlParams.get('usuarioId');
+            const userTable = $('#userTable');
+            // Carrega os dados da tabela
+            loadData();
+
+            function loadData() {
+                userTable.empty(); // Limpa a tabela
+                $.ajax({
+                    url: 'php/config.php',
+                    type: 'GET',
+                    dataType: 'json',
+                    data: { usuarioId: usuarioId }, // Adiciona o ID do usuário como parâmetro
+                    success: function(users) {
+                        if (users.length > 0) {
+                            $.each(users, function(index, user) {
+                                let row = $('<tr></tr>');
+
+                                let nome = $('<td></td>').text(user.nome);
+                                row.append(nome);
+
+                                let descricao = $('<td></td>').text(user.descricao);
+                                row.append(descricao);
+
+                                let dataInicio = $('<td></td>').text(user.data_inicio);
+                                row.append(dataInicio);
+
+                                let dataFinal = $('<td></td>').text(user.data_final);
+                                row.append(dataFinal);
+
+                                let actions = $('<td></td>');
+
+                                let editarButton = $('<a></a>')
+                                    .text('Editar')
+                                    .attr('href', 'php/editar.php?id=' + user.ID_atividade)
+                                    .addClass('editar-button');
+
+                                let excluirButton = $('<a></a>')
+                                    .text('Excluir')
+                                    .attr('href', 'php/excluir.php?id=' + user.ID_atividade)
+                                    .addClass('excluir-button');
+
+                                actions.append(editarButton);
+                                actions.append(excluirButton);
+                                row.append(actions);// Adiciona a linha à tabela
+                                userTable.append(row);
+                            });
+                        } else {
+                            userTable.append('<tr><td colspan="5">Não foi possível carregar os dados do usuário.</td></tr>');
+                        }
+                    },
+                    error: function() {
+                        // Exibe uma mensagem de erro
+                        alert('Erro na requisição AJAX.');
+                    }
+                });
+            }
+        });
+    </script>
+    
+</body>
+
+</html>
